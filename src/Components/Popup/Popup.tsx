@@ -11,7 +11,7 @@ export interface PopupProps {
 
 const Popup = ({ visible, closeCallback, children }: PopupProps) => {
   return (
-    <Modal visible={visible}>
+    <Modal visible={visible} transparent>
       <TouchableOpacity
         activeOpacity={1}
         onPress={closeCallback}
