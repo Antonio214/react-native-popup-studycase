@@ -1,6 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, Modal, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
@@ -13,15 +19,25 @@ export default function App() {
       ></Button>
 
       <Modal visible={shouldShowModal}>
-        <View style={styles.backdrop}>
-          <View style={styles.contentContainer}>
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setShouldShowModal(false)}
+          style={styles.backdrop}
+        >
+          <View
+            style={styles.contentContainer}
+            onStartShouldSetResponder={(event) => true}
+            onTouchEnd={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <Text>Hello from modal!</Text>
             <Button
               title={"Close Modal!"}
               onPress={() => setShouldShowModal(false)}
             ></Button>
           </View>
-        </View>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
