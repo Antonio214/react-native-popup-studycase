@@ -14,6 +14,10 @@ export default function App() {
 
       <Modal visible={shouldShowModal}>
         <Text>Hello from modal!</Text>
+        <Button
+          title={"Close Modal!"}
+          onPress={() => setShouldShowModal(false)}
+        ></Button>
       </Modal>
     </View>
   );
