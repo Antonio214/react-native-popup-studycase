@@ -13,11 +13,15 @@ export default function App() {
       ></Button>
 
       <Modal visible={shouldShowModal}>
-        <Text>Hello from modal!</Text>
-        <Button
-          title={"Close Modal!"}
-          onPress={() => setShouldShowModal(false)}
-        ></Button>
+        <View style={styles.backdrop}>
+          <View style={styles.contentContainer}>
+            <Text>Hello from modal!</Text>
+            <Button
+              title={"Close Modal!"}
+              onPress={() => setShouldShowModal(false)}
+            ></Button>
+          </View>
+        </View>
       </Modal>
     </View>
   );
@@ -29,5 +33,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  backdrop: {
+    backgroundColor: "#00000099",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  contentContainer: {
+    backgroundColor: "#f6f6f6",
+    height: "20%",
+    width: "80%",
+    borderRadius: 12,
+    padding: 20,
+
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
