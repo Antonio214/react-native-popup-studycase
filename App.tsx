@@ -1,7 +1,7 @@
 //App.tsx
 import { useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
-import Popup from "./src/Components/Popup/Popup";
+import TwoButtonsLayoutPopup from "./src/Components/TwoButtonsLayoutPopup/TwoButtonsLayoutPopup";
 
 export default function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
@@ -13,10 +13,14 @@ export default function App() {
         onPress={() => setShouldShowModal(true)}
       ></Button>
 
-      <Popup
+      <TwoButtonsLayoutPopup
         visible={shouldShowModal}
         closeCallback={() => setShouldShowModal(false)}
-      ></Popup>
+        confirmCallback={() => {
+          console.log("Confirm");
+          setShouldShowModal(false);
+        }}
+      ></TwoButtonsLayoutPopup>
     </View>
   );
 }
