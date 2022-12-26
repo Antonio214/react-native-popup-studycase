@@ -1,21 +1,15 @@
-// Popup.tsx
+// src/Components/PopUp/Popup.tsx
 
-import {
-  Button,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React from "react";
+import { Modal, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { ReactNode } from "react";
 
-type Props = {
+export interface PopupProps {
   visible: boolean;
   closeCallback: () => void;
-};
+  children?: ReactNode;
+}
 
-const Popup = ({ visible, closeCallback }: Props) => {
+const Popup = ({ visible, closeCallback, children }: PopupProps) => {
   return (
     <Modal visible={visible}>
       <TouchableOpacity
@@ -30,8 +24,7 @@ const Popup = ({ visible, closeCallback }: Props) => {
             e.stopPropagation();
           }}
         >
-          <Text>Hello from modal!</Text>
-          <Button title={"Close Modal!"} onPress={closeCallback}></Button>
+          {children}
         </View>
       </TouchableOpacity>
     </Modal>
