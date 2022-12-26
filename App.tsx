@@ -1,12 +1,7 @@
+//App.tsx
 import { useState } from "react";
-import {
-  Button,
-  Modal,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Button, StyleSheet, View } from "react-native";
+import Popup from "./src/Components/Popup/Popup";
 
 export default function App() {
   const [shouldShowModal, setShouldShowModal] = useState(false);
@@ -18,27 +13,10 @@ export default function App() {
         onPress={() => setShouldShowModal(true)}
       ></Button>
 
-      <Modal visible={shouldShowModal}>
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => setShouldShowModal(false)}
-          style={styles.backdrop}
-        >
-          <View
-            style={styles.contentContainer}
-            onStartShouldSetResponder={(event) => true}
-            onTouchEnd={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <Text>Hello from modal!</Text>
-            <Button
-              title={"Close Modal!"}
-              onPress={() => setShouldShowModal(false)}
-            ></Button>
-          </View>
-        </TouchableOpacity>
-      </Modal>
+      <Popup
+        visible={shouldShowModal}
+        closeCallback={() => setShouldShowModal(false)}
+      ></Popup>
     </View>
   );
 }
@@ -49,23 +27,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  backdrop: {
-    backgroundColor: "#00000099",
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  contentContainer: {
-    backgroundColor: "#f6f6f6",
-    height: "20%",
-    width: "80%",
-    borderRadius: 12,
-    padding: 20,
-
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 });
